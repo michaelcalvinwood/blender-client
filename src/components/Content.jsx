@@ -1,6 +1,6 @@
 import { Box, Button, Input, Select, Stack, Text } from '@chakra-ui/react'
 import React, { useState } from 'react';
-import { setContentType, setContentSubType, setContentSubSubType, setContentInput, resetContentInfo } from '../store/sliceContent';
+import { setContentType, setContentSubType, setContentSubSubType, setContentInput, resetContentInfo, setContentQueryResults } from '../store/sliceContent';
 import { setAlertMsg } from '../store/sliceAlert';
 import { useDispatch, useSelector } from 'react-redux';
 import { Radio, RadioGroup } from '@chakra-ui/react';
@@ -36,7 +36,8 @@ const Content = () => {
             method: 'post',
             data: {
                 type: content.subType ? content.type + '_' + content.subType : content.type,
-                query: content.input
+                query: content.input,
+                timePeriod: content.subSubType
             }
         }
 
@@ -48,7 +49,7 @@ const Content = () => {
             return console.error('processQuery error', err);
         }
       
-        console.log(response.data);
+        dispatch(setContentQueryResults({queryResults: response.data}));
     }
   return (
     <Box>

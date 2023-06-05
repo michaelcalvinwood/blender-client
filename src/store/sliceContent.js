@@ -28,6 +28,10 @@ const sliceContent = createSlice({
             state.queryResults = [...action.payload.queryResults];
             return state;
         },
+        removeContentQueryResult: (state, action) => {
+            state.queryResults = state.queryResults.filter(query => query.id !== action.payload.id);
+            return state;
+        },
         addContentMix: (state, action) => {
             state.mix.unshift(action.payload.mix);
             return state;
@@ -42,6 +46,6 @@ const sliceContent = createSlice({
     }
 });
 
-export const { setContentType, setContentSubType, setContentSubSubType, setContentInput, resetContentInfo, setContentQueryResults } = sliceContent.actions;
+export const { setContentType, setContentSubType, setContentSubSubType, setContentInput, resetContentInfo, setContentQueryResults, removeContentQueryResult, addContentMix } = sliceContent.actions;
 
 export default sliceContent.reducer;

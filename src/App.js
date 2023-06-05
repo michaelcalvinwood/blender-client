@@ -6,6 +6,8 @@ import Output from './components/Output';
 import Topic from './components/Topic';
 import Content from './components/Content';
 import { useSelector } from 'react-redux';
+import QueryResults from './components/QueryResults';
+import Mix from './components/Mix';
 
 function App() {
   const alert = useSelector(state => state.alert);
@@ -19,6 +21,8 @@ function App() {
       <Output/>
       <Topic />
       <Content />
+      <Mix />
+      <QueryResults />
     </Container>
   )
 }
