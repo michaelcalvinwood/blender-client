@@ -6,10 +6,11 @@ const sliceContent = createSlice({
     reducers: {
         setContentType: (state, action) => {
             state.type = action.payload.type;
-            if(state.type === 'googe_search' && !state.subType) {
-                state.subType = 'news';
+            if (action.payload.type === 'google_search') {
+                state.subType = 'news';     
                 state.subSubType = 'last_month';
             }
+            
             return state;
         },
         setContentSubType: (state, action) => {
@@ -17,7 +18,7 @@ const sliceContent = createSlice({
             return state;
         },
         setContentSubSubType: (state, action) => {
-            state.subType = action.payload.subSubType;
+            state.subSubType = action.payload.subSubType;
             return state;
         },
         setContentInput: (state, action) => {
@@ -36,6 +37,11 @@ const sliceContent = createSlice({
             state.mix.unshift(action.payload.mix);
             return state;
         },
+        removeContentMix: (state, action) => {
+            console.log('payload', action.payload)
+            state.mix = state.mix.filter(mix => mix.id !== action.payload.id);
+            return state;
+        },
         resetContentInfo: (state, action) => {
             state.subType = state.type === 'google_search' ? 'news' : '';
             state.subSubType = state.type === 'google_search' ? 'last_month': '';
@@ -46,6 +52,6 @@ const sliceContent = createSlice({
     }
 });
 
-export const { setContentType, setContentSubType, setContentSubSubType, setContentInput, resetContentInfo, setContentQueryResults, removeContentQueryResult, addContentMix } = sliceContent.actions;
+export const { setContentType, setContentSubType, setContentSubSubType, setContentInput, resetContentInfo, setContentQueryResults, removeContentQueryResult, addContentMix, removeContentMix } = sliceContent.actions;
 
 export default sliceContent.reducer;

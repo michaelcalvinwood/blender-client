@@ -70,7 +70,7 @@ const Content = () => {
                     dispatch(setContentInput({input: e.target.value}))
                 }}/>
             
-            <RadioGroup width="calc(100% - 20rem)" display='flex' justifyContent={'center'} margin=".5rem 0 0 20rem" onChange={(e) => { console.log(e); dispatch(setContentSubSubType({subType: e}))}} value={content.subSubType ? content.subSubType : 'news'}>
+            <RadioGroup width="calc(100% - 20rem)" display='flex' justifyContent={'center'} margin=".5rem 0 0 20rem" onChange={(e) => { console.log(e); dispatch(setContentSubSubType({subSubType: e}))}} value={content.subSubType ? content.subSubType : 'news'}>
             <Stack direction='row'>
                 <Radio value='last_hour'>Hour</Radio>
                 <Radio value='last_day'>Day</Radio>

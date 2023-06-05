@@ -31,8 +31,8 @@ const QueryResults = () => {
             return <Box key={id} display={'flex'} justifyContent={'space-between'} width={'100%'} margin=".5rem 0" cursor='pointer'
                 
                 >
-                <Link href={link} target='_blank' width='calc(100% - 27rem)'>{title}</Link>
-                <Text width='12rem'>{domain}</Text>
+                <Link href={link} target='_blank' width='calc(100% - 29rem)'>{title}</Link>
+                <Link href={link} target="_blank" width='14rem'>{domain}</Link>
                 <Text width='12rem'>{date}</Text>
                 <FaRegSquare size={24} onClick={(e) => addToMix(mix)}/>
             </Box>
