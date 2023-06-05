@@ -5,7 +5,7 @@ import { ChakraBaseProvider, extendBaseTheme } from '@chakra-ui/react'
 import { theme as proTheme } from '@chakra-ui/pro-theme'
 import { extendTheme, theme as baseTheme, ColorModeScript } from '@chakra-ui/react'
 // `@chakra-ui/theme` is a part of the base install with `@chakra-ui/react`
-import chakraTheme from '@chakra-ui/theme'
+import chakraTheme from '@chakra-ui/theme';
 
 const { Button } = chakraTheme.components
 
