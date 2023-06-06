@@ -8,8 +8,8 @@ const Output = () => {
     const dispatch = useDispatch();
 
     const types = [
-        {type: 'news article', id:'news'},
-        {type: 'blog post', id: 'blog'}
+        {type: 'News Article', id:'news'},
+        {type: 'Blog Post', id: 'blog'}
     ]
     const defaultType = types[0];
 

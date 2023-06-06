@@ -15,21 +15,19 @@ const Mix = () => {
        
         {content.mix.map(mix => (
             <Box>
-                
-                    { mix.type !== 'text' && <Box id={mix.id} display={'flex'} justifyContent={'space-between'} width={'100%'} padding=".75rem 0" borderBottom="1px solid darkgrey">
-                        <Link href={mix.url} target="_blank" width='calc(100% - 29rem)'>{mix.title}</Link>
-                        <Link href={mix.url} target="_blank" width="15rem">{mix.source}</Link>
-                        <FaRegTrashAlt size={24} color="red" onClick={() => dispatch(removeContentMix({id: mix.id}))} cursor={'pointer'}/>
-                      </Box>
-                    }
-                    { mix.type === 'text' && <Box id={mix.id} display={'flex'} justifyContent={'space-between'} width={'100%'} padding=".75rem 0" borderBottom="1px solid darkgrey">
-                        <Text width='calc(100% - 29rem)'>{mix.title}</Text>
-                        <Text width="15rem">{mix.source}</Text>
-                        <FaRegTrashAlt size={24} color="red" onClick={() => dispatch(removeContentMix({id: mix.id}))} cursor={'pointer'}/>
-                      </Box>
-                    }
-                    
-                </Box>
+                { mix.type !== 'text' && <Box id={mix.id} display={'flex'} justifyContent={'space-between'} width={'100%'} padding=".75rem 0" borderBottom="1px solid darkgrey">
+                    <Link href={mix.url} target="_blank" width='calc(100% - 29rem)'>{mix.title}</Link>
+                    <Link href={mix.url} target="_blank" width="15rem">{mix.source}</Link>
+                    <FaRegTrashAlt size={24} color="red" onClick={() => dispatch(removeContentMix({id: mix.id}))} cursor={'pointer'}/>
+                    </Box>
+                }
+                { mix.type === 'text' && <Box id={mix.id} display={'flex'} justifyContent={'space-between'} width={'100%'} padding=".75rem 0" borderBottom="1px solid darkgrey">
+                    <Text width='calc(100% - 29rem)'>{mix.title}</Text>
+                    <Text width="15rem">{mix.source}</Text>
+                    <FaRegTrashAlt size={24} color="red" onClick={() => dispatch(removeContentMix({id: mix.id}))} cursor={'pointer'}/>
+                    </Box>
+                }        
+            </Box>
               
            
         ))

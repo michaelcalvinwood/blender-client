@@ -10,6 +10,8 @@ import PymntsSearch from './PymntsSearch';
 import Link from './Link';
 import File from './File';
 import TextInput from './TextInput';
+import ChatGPT from './ChatGPT';
+import Transcript from './Transcript';
 
 
 const Content = () => {
@@ -22,9 +24,10 @@ const Content = () => {
         {type: 'PYMNTS Search', id: 'pymnts_search', input: <PymntsSearch />},
         {type: 'Link', id: "URL", input:<Link />},
         {type: 'File', id: 'file', input:<File />},
+        {type: 'Transcript', id: 'transcript', input:<Transcript />},
         {type: 'Text', id: 'text', input:<TextInput />},
+        {type: 'ChatGPT', id: 'chatGPT', input: <ChatGPT />},
         {type: 'Seed', id: 'seed', input:<></>},
-        {type: 'chatGPT', id: 'chatGPT', input: <></>},
         {type: 'Website', id: 'website', input:<></>}
     ]
     
