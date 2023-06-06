@@ -10,7 +10,7 @@ const sliceContent = createSlice({
                 state.subType = 'news';     
                 state.subSubType = 'last_month';
             }
-            
+            state.queryResults = [];
             return state;
         },
         setContentSubType: (state, action) => {

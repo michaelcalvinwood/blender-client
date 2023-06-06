@@ -15,7 +15,8 @@ const QueryResults = () => {
             type: 'url',
             id: urlInfo.id,
             url: urlInfo.link,
-            title: urlInfo.title
+            title: urlInfo.title,
+            source: urlInfo.domain
         }
 
         dispatch(addContentMix({mix}));
@@ -23,16 +24,16 @@ const QueryResults = () => {
 
   return (
     <Box>
-        <Heading size='sm' variant={'primary'} textAlign={'center'}>Query Results</Heading>
+        {/* <Heading size='sm' variant={'primary'} textAlign={'center'}>Query Results</Heading> */}
         {queryResults.map((mix) => {
             const {id, title, link, domain, date} = mix;
             const test = content.mix.find(mix => mix.id === id);
             if (test) return <></>;
-            return <Box key={id} display={'flex'} justifyContent={'space-between'} width={'100%'} margin=".5rem 0" cursor='pointer'
+            return <Box key={id} display={'flex'} justifyContent={'space-between'} alignContent="center" fontSize="1.1rem" width={'100%'} padding=".75rem 0" cursor='pointer' borderBottom="1px solid darkgrey" margin="1rem 0 0 0"
                 
                 >
-                <Link href={link} target='_blank' width='calc(100% - 29rem)'>{title}</Link>
-                <Link href={link} target="_blank" width='14rem'>{domain}</Link>
+                <Link href={link} target='_blank' width='calc(100% - 30rem)'>{title}</Link>
+                <Link href={link} target="_blank" width='15rem'>{domain}</Link>
                 <Text width='12rem'>{date}</Text>
                 <FaRegSquare size={24} onClick={(e) => addToMix(mix)}/>
             </Box>
