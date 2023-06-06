@@ -38,7 +38,8 @@ const Link = () => {
             }
         }
         try {
-            response = axios(request);
+            response = await axios(request);
+            title = response.data;
         } catch (err) {
             console.error(err);
             title = url.pathname;
@@ -65,7 +66,7 @@ const Link = () => {
             dispatch(setContentInput({input: e.target.value}))
         }}
         />
-         <Box width={"100%"} display={'flex'} justifyContent={'flex-end'} marginTop=".5rem">
+         <Box margin=".5rem 0 0 20rem" display={'flex'} justifyContent={'center'} marginTop=".5rem">
             <Button variant={'primary'} onClick={addToMix}>Submit</Button>
          </Box>
     </Box>
