@@ -8,12 +8,15 @@ import Content from './components/Content';
 import { useSelector } from 'react-redux';
 import QueryResults from './components/QueryResults';
 import Mix from './components/Mix';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 function App() {
   const alert = useSelector(state => state.alert);
   const content = useSelector(state => state.content);
   const [mode, setMode] = useState('input');
 
+  useEffect(() => {
+    if (content.mix.length === 0 && mode !== 'input') setMode('input');
+  })
   return (
     <Container>
       <Heading size={'md'} fontWeight={'bold'} textAlign={'center'} >PYMNTS Blender</Heading>

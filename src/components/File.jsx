@@ -1,5 +1,5 @@
-import React, { useCallback } from 'react'
-import { Box } from '@chakra-ui/react'
+import React, { useCallback, useState } from 'react'
+import { Box, Text, Progress } from '@chakra-ui/react'
 import {useDropzone} from 'react-dropzone'
 import axios from 'axios'
 import {v4 as uuidv4} from 'uuid';
@@ -7,6 +7,10 @@ import { useDispatch } from 'react-redux';
 import { addContentMix } from '../store/sliceContent';
 
 const File = () => {
+
+  const [fileName, setFileName] = useState('');
+  const [fileSize, setFileSize] = useState(0);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   const dispatch = useDispatch();
 
@@ -17,6 +21,8 @@ const File = () => {
     onProgressChange = () => {},
   ) => {
     console.log('uploadToS3', uploadUrl, file);
+    setFileName(file.name);
+    setFileSize(file.size);
 
     const formData = new FormData();
   
@@ -32,14 +38,17 @@ const File = () => {
     const parseProgress = (progressEvent) => {
       const progressPercentage =
         (progressEvent.loaded / progressEvent.total) * 100;
-      onProgressChange(progressPercentage);
+      //console.log('progressPercentage', progressPercentage);
+      setUploadProgress(progressPercentage);
+      //onProgressChange(progressPercentage);
     };
   
     try {
-      const res = await axios.put(uploadUrl, formData, {
+      const res = await axios.put(uploadUrl, file, {
         onUploadProgress: parseProgress,
         headers: {
-          'x-amz-acl': 'public-read'
+          'x-amz-acl': 'public-read',
+          'Content-Type': file.type
         }
       });
   
@@ -55,7 +64,8 @@ const File = () => {
         let folder = date.toISOString();
         folder = folder.substring(0, folder.indexOf('T'));
 
-        acceptedFiles.forEach(async file => {
+        for (let i = 0; i < acceptedFiles.length; ++i) {
+          let file = acceptedFiles[i];
           console.log('accepted files', folder, acceptedFiles);
           let request = {
             url: `https://query.pymnts.com:6255/presignedUrl`,
@@ -94,12 +104,10 @@ const File = () => {
   
           dispatch(addContentMix({mix}));
           }
-        });
-        // foreach file
-            // get presigned url
-            // upload to dropzone
-            // somehow display files and progress
-    
+        };
+
+        setFileName('');
+        
     })
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
@@ -113,6 +121,12 @@ const File = () => {
                   <p style={{height:'6rem', width:'100%'}}>&nbsp;Drag 'n' drop some files here, or click to select files</p>
               }
           </div>
+          { fileName && <Box>
+            <Text>{fileName} ( {fileSize.toLocaleString()} bytes)</Text>
+            <Progress value={uploadProgress} max={100}  />
+          </Box>
+
+          }
         </Box>
     </Box>
   )
