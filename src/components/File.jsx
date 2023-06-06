@@ -4,11 +4,48 @@ import {useDropzone} from 'react-dropzone'
 import axios from 'axios'
 import {v4 as uuidv4} from 'uuid';
 
+
 const File = () => {
 
-    const uploadFile = async (file, url, folder) => {
-      console.log('uploadFile', file, url, folder);
+  const uploadToS3 = async (
+    uploadUrl,
+    file,
+    fields = {},
+    onProgressChange = () => {},
+  ) => {
+    console.log('uploadToS3', uploadUrl, file);
+
+    const formData = new FormData();
+  
+    Object.keys(fields).forEach((key) => {
+      formData.append(key, fields[key]);
+    });
+    formData.append("Content-Type", file.type);
+  
+    //  Make sure to pass data first otherwise it'll throw an error like
+    // Bucket POST must contain a field named 'key'.  If it is specified, please check the order of the fields.
+    formData.append("file", file, file?.name);
+  
+    const parseProgress = (progressEvent) => {
+      const progressPercentage =
+        (progressEvent.loaded / progressEvent.total) * 100;
+      onProgressChange(progressPercentage);
+    };
+  
+    try {
+      const res = await axios.put(uploadUrl, formData, {
+        onUploadProgress: parseProgress,
+        headers: {
+          'x-amz-acl': 'public-read'
+        }
+      });
+  
+      return true;
+    } catch (error) {
+      console.error(error);
+      return false;
     }
+  };
 
     const onDrop = useCallback( async acceptedFiles => {
         const date = new Date();
@@ -26,12 +63,12 @@ const File = () => {
           }
 
           console.log('request', request);
-          
+
           let response;
 
           try {
             response = await axios(request);
-            await uploadFile (file, response.data, folder);
+            await uploadToS3(response.data, file);
           } catch (err) {
             console.error(err);
           }
