@@ -12,6 +12,7 @@ import TextInput from './TextInput';
 import ChatGPT from './ChatGPT';
 import Transcript from './Transcript';
 import Tracker from './Tracker';
+import AIContinue from './AIContinue';
 
 const Content = () => {
     
@@ -27,6 +28,7 @@ const Content = () => {
         {type: 'Transcript', id: 'transcript', input:<Transcript />},
         {type: 'Text', id: 'text', input:<TextInput />},
         {type: 'ChatGPT', id: 'chatGPT', input: <ChatGPT />},
+        {type: 'AI Continue', id: 'AIContinue', input: <AIContinue />},
         {type: 'Seed', id: 'seed', input:<></>},
         {type: 'Website', id: 'website', input:<></>}
     ]
