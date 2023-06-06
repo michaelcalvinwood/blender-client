@@ -28,32 +28,43 @@ const Link = () => {
             return dispatch(setAlertMsg({status: 'error', msg: "Please enter a valid URL."}));
         }
 
-        let request, response, title;
+        let type = 'url';
+        let title;
+        let filename = link.substring(link.lastIndexOf('/') + 1);
+        let extension = filename.substring(filename.lastIndexOf('.')+1).toLowerCase();
 
-        request = {
-            url: 'https://query.pymnts.com:6255/meta',
-            method: 'post',
-            data: {
-                url: link
+        if (extension) {
+            console.log('filename extension', filename, extension);
+            type += `_${extension}`;
+            title = filename;    
+        } else {
+            let request, response;
+
+            request = {
+                url: 'https://query.pymnts.com:6255/meta',
+                method: 'post',
+                data: {
+                    url: link
+                }
             }
-        }
-        try {
-            response = await axios(request);
-            title = response.data;
-        } catch (err) {
-            console.error(err);
-            title = url.pathname;
-        }
-
-        console.log('response', response);
-
+            try {
+                response = await axios(request);
+                title = response.data;
+            } catch (err) {
+                console.error(err);
+                title = url.pathname;
+            }
+        } 
+        
         const mix = {
-            type: 'url',
+            type,
             id: uuidv4(),
             url: link,
             title,
             source: url.hostname
         }
+
+        console.log('mix', mix);
 
         dispatch(addContentMix({mix}));
     }
