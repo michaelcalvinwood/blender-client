@@ -4,7 +4,6 @@ import { setContentType, setContentSubType, setContentSubSubType, setContentInpu
 import { setAlertMsg } from '../store/sliceAlert';
 import { useDispatch, useSelector } from 'react-redux';
 import { Radio, RadioGroup } from '@chakra-ui/react';
-import axios from 'axios';
 import GoogleSearch from './GoogleSearch';
 import PymntsSearch from './PymntsSearch';
 import Link from './Link';
@@ -12,7 +11,7 @@ import File from './File';
 import TextInput from './TextInput';
 import ChatGPT from './ChatGPT';
 import Transcript from './Transcript';
-
+import Tracker from './Tracker';
 
 const Content = () => {
     
@@ -22,6 +21,7 @@ const Content = () => {
     const types = [
         {type: 'Google Search', id: "google_search", input: <GoogleSearch />},
         {type: 'PYMNTS Search', id: 'pymnts_search', input: <PymntsSearch />},
+        {type: 'PYMNTS Study/Tracker', id: 'tracker', input:<Tracker />},
         {type: 'Link', id: "URL", input:<Link />},
         {type: 'File', id: 'file', input:<File />},
         {type: 'Transcript', id: 'transcript', input:<Transcript />},
