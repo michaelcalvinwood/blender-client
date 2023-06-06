@@ -8,6 +8,7 @@ import axios from 'axios';
 import GoogleSearch from './GoogleSearch';
 import PymntsSearch from './PymntsSearch';
 import Link from './Link';
+import File from './File';
 
 
 const Content = () => {
@@ -19,7 +20,7 @@ const Content = () => {
         {type: 'Google Search', id: "google_search", input: <GoogleSearch />},
         {type: 'PYMNTS Search', id: 'pymnts_search', input: <PymntsSearch />},
         {type: 'Link', id: "URL", input:<Link />},
-        {type: 'File', id: 'file', input:<></>},
+        {type: 'File', id: 'file', input:<File />},
         {type: 'Text', id: 'text', input:<></>},
         {type: 'Seed', id: 'seed', input:<></>},
         {type: 'Website', id: 'website', input:<></>}
