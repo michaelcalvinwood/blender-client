@@ -5,6 +5,7 @@ import axios from 'axios'
 import {v4 as uuidv4} from 'uuid';
 import { useDispatch } from 'react-redux';
 import { addContentMix } from '../store/sliceContent';
+import { setSpinner } from '../store/sliceSpinner';
 
 const File = () => {
 
@@ -60,6 +61,7 @@ const File = () => {
   };
 
     const onDrop = useCallback( async acceptedFiles => {
+      dispatch(setSpinner({spinner: true}))
         const date = new Date();
         let folder = date.toISOString();
         folder = folder.substring(0, folder.indexOf('T'));
@@ -107,7 +109,7 @@ const File = () => {
         };
 
         setFileName('');
-        
+        dispatch(setSpinner({spinner: false}))
     })
     const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
@@ -122,7 +124,7 @@ const File = () => {
               }
           </div>
           { fileName && <Box>
-            <Text>{fileName} ( {fileSize.toLocaleString()} bytes)</Text>
+            <Text>{fileName} ({fileSize.toLocaleString()} bytes)</Text>
             <Progress value={uploadProgress} max={100}  />
           </Box>
 
