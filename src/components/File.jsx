@@ -3,9 +3,12 @@ import { Box } from '@chakra-ui/react'
 import {useDropzone} from 'react-dropzone'
 import axios from 'axios'
 import {v4 as uuidv4} from 'uuid';
-
+import { useDispatch } from 'react-redux';
+import { addContentMix } from '../store/sliceContent';
 
 const File = () => {
+
+  const dispatch = useDispatch();
 
   const uploadToS3 = async (
     uploadUrl,
@@ -64,13 +67,32 @@ const File = () => {
 
           console.log('request', request);
 
-          let response;
+          let response, url;
 
           try {
             response = await axios(request);
-            await uploadToS3(response.data, file);
+            url = response.data
+            response = await uploadToS3(url, file);
+
           } catch (err) {
             console.error(err);
+            response = false;
+          }
+
+          if (response) {
+            let link = new URL(url);
+
+            const mix = {
+              type: `url_${file.type.substring(file.type.indexOf('/') + 1)}`,
+              id: uuidv4(),
+              url: url.substring(0, url.indexOf('?')),
+              title: file.name,
+              source: 'file'
+          }
+  
+          console.log('mix', mix);
+  
+          dispatch(addContentMix({mix}));
           }
         });
         // foreach file
