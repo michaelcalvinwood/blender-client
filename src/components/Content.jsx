@@ -9,6 +9,7 @@ import GoogleSearch from './GoogleSearch';
 import PymntsSearch from './PymntsSearch';
 import Link from './Link';
 import File from './File';
+import TextInput from './TextInput';
 
 
 const Content = () => {
@@ -21,8 +22,9 @@ const Content = () => {
         {type: 'PYMNTS Search', id: 'pymnts_search', input: <PymntsSearch />},
         {type: 'Link', id: "URL", input:<Link />},
         {type: 'File', id: 'file', input:<File />},
-        {type: 'Text', id: 'text', input:<></>},
+        {type: 'Text', id: 'text', input:<TextInput />},
         {type: 'Seed', id: 'seed', input:<></>},
+        {type: 'chatGPT', id: 'chatGPT', input: <></>},
         {type: 'Website', id: 'website', input:<></>}
     ]
     
