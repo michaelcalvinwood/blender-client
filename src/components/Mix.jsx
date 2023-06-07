@@ -3,10 +3,18 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {FaRegTrashAlt} from 'react-icons/fa';
 import { removeContentMix } from '../store/sliceContent';
+import * as socket from '../socket';
 
 const Mix = () => {
     const content = useSelector(state => state.content);
+    const topic = useSelector(state => state.topic);
+    const output = useSelector(state => state.output);
+
     const dispatch = useDispatch();
+
+    const handleMix = () => {
+        socket.emit('mix', {mix: content.mix, topic, output});
+    }
 
     if (!content.mix.length) return <></>
   return (
@@ -14,7 +22,7 @@ const Mix = () => {
         <Heading size='sm' variant={'primary'} textAlign={'center'}>Content</Heading>
        
         {content.mix.map(mix => (
-            <Box>
+            <Box key={mix.id}>
                 { mix.type !== 'text' && <Box id={mix.id} display={'flex'} justifyContent={'space-between'} width={'100%'} padding=".75rem 0" borderBottom="1px solid darkgrey">
                     <Link href={mix.url} target="_blank" width='calc(100% - 29rem)'>{mix.title}</Link>
                     <Link href={mix.url} target="_blank" width="15rem">{mix.source}</Link>
@@ -34,7 +42,7 @@ const Mix = () => {
 
         }
          <Box display={'flex'} justifyContent={'center'} margin=".5rem 0">
-            <Button variant={'primary'} textAlign={'right'} width='5rem'>Mix</Button>
+            <Button variant={'primary'} textAlign={'right'} width='5rem' onClick={handleMix}>Mix</Button>
         </Box>
     </Box>
   )

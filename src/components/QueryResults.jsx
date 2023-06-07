@@ -28,7 +28,7 @@ const QueryResults = () => {
         {queryResults.map((mix) => {
             const {id, title, link, domain, date} = mix;
             const test = content.mix.find(mix => mix.id === id);
-            if (test) return <></>;
+            if (test) return <Box key={id}></Box>;
             return <Box key={id} display={'flex'} justifyContent={'space-between'} alignContent="center" fontSize="1.1rem" width={'100%'} padding=".75rem 0" cursor='pointer' borderBottom="1px solid darkgrey" margin="1rem 0 0 0"
                 
                 >

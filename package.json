@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.10",
     "@chakra-ui/pro-theme": "^0.1.1",
     "@chakra-ui/react": "^2.7.0",
     "@emotion/react": "^11.11.0",
@@ -23,9 +24,9 @@
     "react-icons": "^4.9.0",
     "react-redux": "^8.0.7",
     "react-scripts": "5.0.1",
+    "socket.io-client": "^4.6.2",
     "url-metadata": "^3.0.1",
-    "web-vitals": "^2.1.4",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.10"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",

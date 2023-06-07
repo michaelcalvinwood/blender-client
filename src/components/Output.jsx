@@ -9,7 +9,8 @@ const Output = () => {
 
     const types = [
         {type: 'News Article', id:'news'},
-        {type: 'Blog Post', id: 'blog'}
+        {type: 'Blog Post', id: 'blog'},
+        {type: 'Marketing Piece', id: 'marketing'}
     ]
     const defaultType = types[0];
 

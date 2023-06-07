@@ -16,7 +16,7 @@ const AIContinue = () => {
 
   const loc = text.indexOf("\n");
 
-  const title = prompt;
+  const title = loc < 120 ? text.substring(0, loc) : text.substring(0, 120) + '...';
 
   const addText = () => {
     const mix = {
