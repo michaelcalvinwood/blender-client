@@ -9,16 +9,22 @@ import { useSelector } from 'react-redux';
 import QueryResults from './components/QueryResults';
 import Mix from './components/Mix';
 import { useEffect, useState } from 'react';
+import Login from './components/Login';
+
 function App() {
   const alert = useSelector(state => state.alert);
   const content = useSelector(state => state.content);
   const spinner = useSelector(state => state.spinner);
+  const login = useSelector(state => state.login);
 
   const [mode, setMode] = useState('input');
 
   useEffect(() => {
     if (content.mix.length === 0 && mode !== 'input') setMode('input');
   })
+
+  if (!login.isLoggedIn) return <Login />
+  
   return (
     <Container>
       <Heading size={'md'} fontWeight={'bold'} textAlign={'center'} >PYMNTS Blender</Heading>
