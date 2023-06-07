@@ -23,7 +23,7 @@ function App() {
     if (content.mix.length === 0 && mode !== 'input') setMode('input');
   })
 
-  if (!login.isLoggedIn) return <Login />
+  if (!login.token) return <Login />
   
   return (
     <Container>

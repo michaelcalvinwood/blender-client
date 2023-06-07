@@ -2,8 +2,9 @@ import React from 'react'
 import { Alert, AlertIcon, Box, Button, Container, Heading, Input, Text } from '@chakra-ui/react';
 import { setAlertMsg } from '../store/sliceAlert';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPassword, setUsername, setIsLoggedIn } from '../store/sliceLogin';
+import { setPassword, setUsername, setToken } from '../store/sliceLogin';
 import * as wp from '../utils/wordpress';
+import axios from 'axios';
 
 const Login = () => {
     const dispatch = useDispatch();
@@ -12,12 +13,26 @@ const Login = () => {
 
 
     const handleSubmit = async () => {
-        const token = await wp.getJWT('delta.pymnts.com', login.username, login.password);
-        console.log('token', token);
+        const request = {
+            url: `https://blender.pymnts.com:6256/login`,
+            method: 'post',
+            data: {
+                username: login.username,
+                password: login.password
+            }
+        }
 
-        if (token === false) return dispatch(setAlertMsg({status: 'error', msg: 'invalid credentials'}))
-            
-        dispatch(setIsLoggedIn(true));
+        let response;
+
+        try {
+            response = await axios(request);
+        } catch (err) {
+            console.error(err);
+            dispatch(setAlertMsg({status: 'error', msg: 'invalid credentials'}))
+            return;
+        }
+        
+        dispatch(setToken({token: response.data}));
     }
 
   return (
