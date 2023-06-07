@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const sliceContent = createSlice({
-    name: 'output',
-    initialState: {type: 'google_search', subType: 'news', subSubType: 'last_month', input: null, queryResults: [], mix: []},
+    name: 'content',
+    initialState: {type: 'google_search', subType: 'news', subSubType: 'last_month', input: null, queryResults: [], mix: [], stage: 'input'},
     reducers: {
         setContentType: (state, action) => {
             state.type = action.payload.type;
@@ -37,6 +37,14 @@ const sliceContent = createSlice({
             state.mix.unshift(action.payload.mix);
             return state;
         },
+        setContentMix: (state, action) => {
+            state.mix = [...action.payload.mix];
+            return state;
+        },
+        setContentStage: (state, action) => {
+            state.stage = action.payload.stage;
+            return state;
+        },
         removeContentMix: (state, action) => {
             console.log('payload', action.payload)
             state.mix = state.mix.filter(mix => mix.id !== action.payload.id);
@@ -52,6 +60,6 @@ const sliceContent = createSlice({
     }
 });
 
-export const { setContentType, setContentSubType, setContentSubSubType, setContentInput, resetContentInfo, setContentQueryResults, removeContentQueryResult, addContentMix, removeContentMix } = sliceContent.actions;
+export const { setContentType, setContentSubType, setContentSubSubType, setContentInput, resetContentInfo, setContentQueryResults, removeContentQueryResult, addContentMix, removeContentMix, setContentMix, setContentStage } = sliceContent.actions;
 
 export default sliceContent.reducer;

@@ -2,7 +2,7 @@ import { Box, Button, Heading, Link, Text } from '@chakra-ui/react'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {FaRegTrashAlt} from 'react-icons/fa';
-import { removeContentMix } from '../store/sliceContent';
+import { removeContentMix, setContentStage } from '../store/sliceContent';
 import * as socket from '../socket';
 
 const Mix = () => {
@@ -10,10 +10,13 @@ const Mix = () => {
     const topic = useSelector(state => state.topic);
     const output = useSelector(state => state.output);
 
+    console.log('mix', content.mix);
+
     const dispatch = useDispatch();
 
     const handleMix = () => {
-        socket.emit('mix', {mix: content.mix, topic, output});
+        dispatch(setContentStage({stage: 'input'}));
+        socket.emit('mix', {content: content.mix, topic, output});
     }
 
     if (!content.mix.length) return <></>
@@ -36,14 +39,22 @@ const Mix = () => {
                     </Box>
                 }        
             </Box>
-              
-           
         ))
 
         }
          <Box display={'flex'} justifyContent={'center'} margin=".5rem 0">
             <Button variant={'primary'} textAlign={'right'} width='5rem' onClick={handleMix}>Mix</Button>
         </Box>
+        {content.stage === 'text' && <Box>
+            {content.mix.map(mix => {
+                return <Box key={'a-' + mix.id} marginTop="1rem">
+                    <h3>{mix.id}</h3>
+                    <div dangerouslySetInnerHTML={{__html: mix.html ? mix.html : mix.text}}></div>
+                </Box>
+            })}
+        </Box>
+
+        }
     </Box>
   )
 }

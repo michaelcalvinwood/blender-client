@@ -15,6 +15,22 @@ export const setupTheSocket = (socketio, url, store) => {
             }
         })
     })
+
+    socket.on('text', (mix) => {
+        store.dispatch({
+            type: 'content/setContentMix',
+            payload: {
+                mix
+            }
+        })
+
+        store.dispatch({
+            type: 'content/setContentStage',
+            payload: {
+                stage: 'text'
+            }
+        })
+    })
     // store.dispatch({
     //     type: 'counter/changeCounterValue',
     //     payload: {
