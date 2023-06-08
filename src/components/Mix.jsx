@@ -54,14 +54,13 @@ const Mix = () => {
             })}
          </Box>
         }
-        {content.stage === 'summary' && <Box>
+        {content.stage === 'chunks' && <Box>
             {content.mix.map(mix => {
                 return <Box key={`${content.stage}-${mix.id}`} marginTop="1rem">
                     <h3>{mix.id}</h3>
-                    {mix.summary && <Box>
-                     <Text>{mix.summary.summary}</Text>   
-                     </Box>
-                    }
+                   {mix.chunks.map((chunk, index) => {
+                     return <Text key={`chunk-${mix.id}-${mix.index}`} borderBottom="1px solid #0078FF" paddingBottom='.5rem' marginBottom={'.5rem'}>{mix.chunks[index]}</Text>
+                   })}
                 </Box>
             })}
          </Box>

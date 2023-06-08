@@ -15,8 +15,8 @@ export const setupTheSocket = (socketio, url, store) => {
             }
         })
     })
-
     socket.on('text', (mix) => {
+        console.log('got text')
         store.dispatch({
             type: 'content/setContentMix',
             payload: {
@@ -32,7 +32,8 @@ export const setupTheSocket = (socketio, url, store) => {
         })
     })
 
-    socket.on('summary', (mix) => {
+    socket.on('gotChunks', (mix) => {
+        console.log('got chunks');
         store.dispatch({
             type: 'content/setContentMix',
             payload: {
@@ -43,16 +44,11 @@ export const setupTheSocket = (socketio, url, store) => {
         store.dispatch({
             type: 'content/setContentStage',
             payload: {
-                stage: 'summary'
+                stage: 'chunks'
             }
         })
     })
-    // store.dispatch({
-    //     type: 'counter/changeCounterValue',
-    //     payload: {
-    //         amount: 20
-    //     }
-    // })
+   
 }
 
 export const emit = (event, ...args) => socket.emit(event, ...args);

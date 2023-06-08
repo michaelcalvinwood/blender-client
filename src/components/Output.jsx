@@ -2,10 +2,11 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Select, Text } from '@chakra-ui/react';
 import { setOutputType } from '../store/sliceOutput';
-
+import { setContentStage } from '../store/sliceContent';
 const Output = () => {
     const output = useSelector (state => state.output);
     const dispatch = useDispatch();
+    dispatch(setContentStage({stage: 'input'}));
 
     const types = [
         {type: 'News Article', id:'news'},
