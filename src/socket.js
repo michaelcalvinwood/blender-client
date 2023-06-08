@@ -31,6 +31,22 @@ export const setupTheSocket = (socketio, url, store) => {
             }
         })
     })
+
+    socket.on('summary', (mix) => {
+        store.dispatch({
+            type: 'content/setContentMix',
+            payload: {
+                mix
+            }
+        })
+
+        store.dispatch({
+            type: 'content/setContentStage',
+            payload: {
+                stage: 'summary'
+            }
+        })
+    })
     // store.dispatch({
     //     type: 'counter/changeCounterValue',
     //     payload: {

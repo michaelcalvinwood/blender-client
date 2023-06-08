@@ -47,13 +47,24 @@ const Mix = () => {
         </Box>
         {content.stage === 'text' && <Box>
             {content.mix.map(mix => {
-                return <Box key={'a-' + mix.id} marginTop="1rem">
+                return <Box key={`${content.stage}-${mix.id}`} marginTop="1rem">
                     <h3>{mix.id}</h3>
-                    <div dangerouslySetInnerHTML={{__html: mix.html ? mix.html : mix.text}}></div>
+                    <div>{mix.text}</div>
                 </Box>
             })}
-        </Box>
-
+         </Box>
+        }
+        {content.stage === 'summary' && <Box>
+            {content.mix.map(mix => {
+                return <Box key={`${content.stage}-${mix.id}`} marginTop="1rem">
+                    <h3>{mix.id}</h3>
+                    {mix.summary && <Box>
+                     <Text>{mix.summary.summary}</Text>   
+                     </Box>
+                    }
+                </Box>
+            })}
+         </Box>
         }
     </Box>
   )

@@ -6,6 +6,7 @@ import { addContentMix } from '../store/sliceContent';
 const QueryResults = () => {
     const dispatch = useDispatch();
     const content = useSelector(state => state.content);
+    
 
     if (!content.queryResults.length) return <></>
     const { queryResults } = content;

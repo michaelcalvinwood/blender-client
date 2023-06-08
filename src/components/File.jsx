@@ -95,7 +95,8 @@ const File = () => {
             let link = new URL(url);
 
             const mix = {
-              type: `url_${file.type.substring(file.type.indexOf('/') + 1)}`,
+              type: `url`,
+              subType: `${file.type.substring(file.type.indexOf('/') + 1)}`,
               id: uuidv4(),
               url: url.substring(0, url.indexOf('?')),
               title: file.name,

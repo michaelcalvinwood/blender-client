@@ -9,6 +9,7 @@ import axios from 'axios';
 
 const GoogleSearch = () => {
     const content = useSelector(state => state.content);
+    const login = useSelector(state => state.login);
     const dispatch = useDispatch();
 
     const resetAlert = () => dispatch(setAlertMsg({status: 'error', msg:""}));
@@ -23,7 +24,8 @@ const GoogleSearch = () => {
             data: {
                 type: content.subType ? content.type + '_' + content.subType : content.type,
                 query: content.input,
-                timePeriod: content.subSubType
+                timePeriod: content.subSubType,
+                token: login.token
             }
         }
 

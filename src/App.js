@@ -10,6 +10,7 @@ import QueryResults from './components/QueryResults';
 import Mix from './components/Mix';
 import { useEffect, useState } from 'react';
 import Login from './components/Login';
+import { AiOutlineLogout } from 'react-icons/ai';
 
 function App() {
   const alert = useSelector(state => state.alert);
@@ -23,28 +24,37 @@ function App() {
     if (content.mix.length === 0 && mode !== 'input') setMode('input');
   })
 
+  const logout = () => {
+    
+  }
+
   if (!login.token) return <Login />
   
   return (
-    <Container>
-      <Heading size={'md'} fontWeight={'bold'} textAlign={'center'} >PYMNTS Blender</Heading>
-      <Alert status={alert.status} marginBottom={'0'} visibility={alert.status && alert.msg ? 'visible' : 'hidden'}>
-        <AlertIcon />
-        {alert.msg}
-      </Alert>
-      {mode === 'mix' && <Mix />}
-      {mode === 'input' && <Box>     
-        <Output/>
-        <Topic />
-        <Content />    
-        <QueryResults />
-      </Box>}
-      { content.mix.length > 0 && <Box position='fixed' top="1rem" right="1rem" zIndex="10" backgroundColor={'#0078FF'} color='white' padding=".25rem" width="4rem" height="4rem" borderRadius="50%" display='flex' justifyContent={'center'} alignItems={'center'} fontSize={'1.5rem'} cursor={'pointer'} onClick={() => mode === 'input' ? setMode('mix') : setMode('input')}>{content.mix.length}</Box>
-      }
-      {spinner && <Box height='100vh' width="100vw" position='fixed' top='0' left='0' display='flex' justifyContent={'center'} alignItems={'center'} zIndex={100}>
-        <Spinner size='xl' color='navy'/>
-    </Box> }
-    </Container>
+    <>
+      <Box display="flex" justifyContent={'flex-end'} margin=".5rem .5rem 0 0" cursor={'pointer'} onClick={logout}><AiOutlineLogout size={24}/></Box>
+      <Container>
+        <Heading size={'md'} fontWeight={'bold'} textAlign={'center'} >PYMNTS Blender</Heading>
+        <Alert status={alert.status} marginBottom={'0'} visibility={alert.status && alert.msg ? 'visible' : 'hidden'}>
+          <AlertIcon />
+          {alert.msg}
+        </Alert>
+        {mode === 'mix' && <Mix />}
+        {mode === 'input' && <Box>     
+          <Output/>
+          <Topic />
+          <Content />    
+          <QueryResults />
+        </Box>}
+        { content.mix.length > 0 && <Box position='fixed' top="1rem" right="6rem" zIndex="10" backgroundColor={'#0078FF'} color='white' padding=".25rem" width="4rem" height="4rem" borderRadius="50%" display='flex' justifyContent={'center'} alignItems={'center'} fontSize={'1.5rem'} cursor={'pointer'} onClick={() => mode === 'input' ? setMode('mix') : setMode('input')}>{content.mix.length}</Box>
+        }
+        
+        
+        {spinner && <Box height='100vh' width="100vw" position='fixed' top='0' left='0' display='flex' justifyContent={'center'} alignItems={'center'} zIndex={100}>
+          <Spinner size='xl' color='navy'/>
+      </Box> }
+      </Container>
+    </>
   )
 }
 
