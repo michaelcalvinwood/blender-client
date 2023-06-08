@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Alert, AlertIcon, Box, Button, Container, Heading, Input, Text } from '@chakra-ui/react';
 import { setAlertMsg } from '../store/sliceAlert';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,10 +7,10 @@ import * as wp from '../utils/wordpress';
 import axios from 'axios';
 
 const Login = () => {
+    const [autoLogin, setAutoLogin] = useState(false);
     const dispatch = useDispatch();
     const alert = useSelector(state => state.alert);
     const login = useSelector(state => state.login);
-
 
     const handleSubmit = async () => {
         const request = {
@@ -32,8 +32,27 @@ const Login = () => {
             return;
         }
         
+        localStorage.setItem('username', login.username);
+        localStorage.setItem('password', login.password);
         dispatch(setToken({token: response.data}));
     }
+
+    useEffect(() => {
+        if (login.password && login.username && !autoLogin) {
+            setAutoLogin(true);
+            handleSubmit();
+        }
+
+        const username = localStorage.getItem('username');
+        const password = localStorage.getItem('password');
+
+        if (!username || !password) return;
+
+        if (username === login.username && password === login.password) return;
+
+        dispatch(setUsername({username}));
+        dispatch(setPassword({password}));
+    })
 
   return (
     <Container>

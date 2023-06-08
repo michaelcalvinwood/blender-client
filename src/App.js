@@ -25,7 +25,8 @@ function App() {
   })
 
   const logout = () => {
-    
+    localStorage.clear();
+    window.location.href = 'https://blender.pymnts.com';
   }
 
   if (!login.token) return <Login />
