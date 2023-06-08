@@ -41,7 +41,7 @@ function App() {
           {alert.msg}
         </Alert>
         {mode === 'mix' && <Mix />}
-        {mode === 'input' && <Box>     
+        {mode === 'input' && login.token && <Box>     
           <Output/>
           <Topic />
           <Content />    

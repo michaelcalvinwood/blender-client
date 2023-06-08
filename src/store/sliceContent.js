@@ -45,6 +45,10 @@ const sliceContent = createSlice({
             state.stage = action.payload.stage;
             return state;
         },
+        setContentArticle: (state, action) => {
+            state.article = action.payload.article;
+            return state;
+        },
         removeContentMix: (state, action) => {
             console.log('payload', action.payload)
             state.mix = state.mix.filter(mix => mix.id !== action.payload.id);
@@ -55,6 +59,7 @@ const sliceContent = createSlice({
             state.subSubType = state.type === 'google_search' ? 'last_month': '';
             state.input = null;
             state.queryResults = [];
+            state.rawArticle = '';
             return state; 
         }
     }

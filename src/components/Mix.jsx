@@ -45,6 +45,7 @@ const Mix = () => {
          <Box display={'flex'} justifyContent={'center'} margin=".5rem 0">
             <Button variant={'primary'} textAlign={'right'} width='5rem' onClick={handleMix}>Mix</Button>
         </Box>
+        {content.stage !== 'input' && <Heading size="sm">{`${content.stage.charAt(0).toUpperCase() + content.stage.slice(1)}`}</Heading>}
         {content.stage === 'text' && <Box>
             {content.mix.map(mix => {
                 return <Box key={`${content.stage}-${mix.id}`} marginTop="1rem">
@@ -59,12 +60,24 @@ const Mix = () => {
                 return <Box key={`${content.stage}-${mix.id}`} marginTop="1rem">
                     <h3>{mix.id}</h3>
                    {mix.chunks.map((chunk, index) => {
-                     return <Text key={`chunk-${mix.id}-${mix.index}`} borderBottom="1px solid #0078FF" paddingBottom='.5rem' marginBottom={'.5rem'}>{mix.chunks[index]}</Text>
+                     return <Text key={`chunk-${mix.id}-${index}`} borderBottom="1px solid #0078FF" paddingBottom='.5rem' marginBottom={'.5rem'}>{chunk}</Text>
                    })}
                 </Box>
             })}
          </Box>
         }
+         {content.stage === 'info' && <Box>
+            {content.mix.map(mix => {
+                return <Box key={`${content.stage}-${mix.id}`} marginTop="1rem">
+                    <h3>{mix.id}</h3>
+                   {mix.info.map((info, index) => {
+                     return <Text key={`chunk-${mix.id}-${index}`} borderBottom="1px solid #0078FF" paddingBottom='.5rem' marginBottom={'.5rem'}>{info.info}</Text>
+                   })}
+                </Box>
+            })}
+         </Box>
+        }
+        {content.stage === 'rawArticle' && <Text marginTop="1rem">{content.article}</Text>}
     </Box>
   )
 }

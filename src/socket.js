@@ -3,6 +3,18 @@ let socket = null;
 export const setupTheSocket = (socketio, url, store) => {
     console.log('setupTheSocket',url);
 
+    const options = {
+        type: 'content/setContentArticle',
+        payload: {
+            article:'yoyo'
+        }
+    }
+
+    console.log('dispatch', options);
+
+    store.dispatch(options)
+
+
     if (socket) return;
     socket = socketio(url);
     console.log('dispatch')
@@ -32,8 +44,8 @@ export const setupTheSocket = (socketio, url, store) => {
         })
     })
 
-    socket.on('gotChunks', (mix) => {
-        console.log('got chunks');
+    socket.on('chunks', (mix) => {
+    
         store.dispatch({
             type: 'content/setContentMix',
             payload: {
@@ -45,6 +57,43 @@ export const setupTheSocket = (socketio, url, store) => {
             type: 'content/setContentStage',
             payload: {
                 stage: 'chunks'
+            }
+        })
+    })
+
+    socket.on('info', (mix) => {
+        store.dispatch({
+            type: 'content/setContentMix',
+            payload: {
+                mix
+            }
+        })
+
+        store.dispatch({
+            type: 'content/setContentStage',
+            payload: {
+                stage: 'info'
+            }
+        })
+    })
+
+    socket.on('rawArticle', (info) => {
+        console.log('socket on rawArticle', info)
+        const options = {
+            type: 'content/setContentArticle',
+            payload: {
+                article: info.rawArticle
+            }
+        }
+    
+        console.log('dispatch', options);
+    
+        store.dispatch(options)
+
+        store.dispatch({
+            type: 'content/setContentStage',
+            payload: {
+                stage: 'rawArticle'
             }
         })
     })
