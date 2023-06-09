@@ -11,6 +11,7 @@ import Mix from './components/Mix';
 import { useEffect, useState } from 'react';
 import Login from './components/Login';
 import { AiOutlineLogout } from 'react-icons/ai';
+import Length from './components/Length';
 
 function App() {
   const alert = useSelector(state => state.alert);
@@ -43,6 +44,7 @@ function App() {
         {mode === 'mix' && <Mix />}
         {mode === 'input' && login.token && <Box>     
           <Output/>
+          <Length />
           <Topic />
           <Content />    
           <QueryResults />
