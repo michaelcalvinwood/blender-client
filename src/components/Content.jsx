@@ -10,7 +10,7 @@ import Link from './Link';
 import File from './File';
 import TextInput from './TextInput';
 import ChatGPT from './ChatGPT';
-import Transcript from './Transcript';
+import Whisper from './Whisper';
 import Tracker from './Tracker';
 import AIContinue from './AIContinue';
 
@@ -25,14 +25,13 @@ const Content = () => {
         {type: 'PYMNTS Study/Tracker', id: 'tracker', input:<Tracker />},
         {type: 'Link', id: "URL", input:<Link />},
         {type: 'File', id: 'file', input:<File />},
-        {type: 'Transcript', id: 'transcript', input:<Transcript />},
+        {type: 'Whisper', id: 'whisper', input:<Whisper />},
         {type: 'Text', id: 'text', input:<TextInput />},
-        {type: 'ChatGPT', id: 'chatGPT', input: <ChatGPT />},
+        {type: 'AI Filler', id: 'chatGPT', input: <ChatGPT />},
         {type: 'AI Continue', id: 'AIContinue', input: <AIContinue />},
         {type: 'Seed', id: 'seed', input:<></>},
         {type: 'Website', id: 'website', input:<></>}
     ]
-    
     
   return (
     <Box>

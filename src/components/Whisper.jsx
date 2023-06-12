@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { addContentMix } from '../store/sliceContent';
 
-const Transcript = () => {
+const Whisper = () => {
   const [text, setText] = useState('');
 
   const dispatch = useDispatch();
@@ -36,4 +36,4 @@ const Transcript = () => {
   )
 }
 
-export default Transcript
+export default Whisper
