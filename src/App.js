@@ -13,6 +13,7 @@ import Login from './components/Login';
 import { AiOutlineLogout } from 'react-icons/ai';
 import Length from './components/Length';
 import HTML from './components/HTML';
+import Divider from './components/Divider';
 
 function App() {
   const alert = useSelector(state => state.alert);
@@ -48,6 +49,7 @@ function App() {
           <Length />
           <HTML />
           <Topic />
+         
           <Content />    
           <QueryResults />
         </Box>}
