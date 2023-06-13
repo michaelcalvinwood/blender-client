@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import Login from './components/Login';
 import { AiOutlineLogout } from 'react-icons/ai';
 import Length from './components/Length';
+import HTML from './components/HTML';
 
 function App() {
   const alert = useSelector(state => state.alert);
@@ -45,6 +46,7 @@ function App() {
         {mode === 'input' && login.token && <Box>     
           <Output/>
           <Length />
+          <HTML />
           <Topic />
           <Content />    
           <QueryResults />
