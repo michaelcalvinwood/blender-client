@@ -1,26 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const sliceLogin = createSlice({
-    name: 'login',
-    initialState: {username: '', password: '', token: null},
+const sliceHTML = createSlice({
+    name: 'html',
+    initialState: {links: true, headings: true, tables: true, bold: true, bullets: true},
     reducers: {
-        setUsername: (state, action) => {
-            
-            state.username = action.payload.username;
-            return state;
-        },
-        setPassword: (state, action) => {
-           
-            state.password = action.payload.password;
-            return state;
-        },
-        setToken: (state, action) => {
-            state.token = action.payload.token;
-            return state;
-        }
+       setHtmlLinks: (state, action) => {
+        state.links = action.payload.links;
+        return state;
+       },
+       setHtmlHeadings: (state, action) => {
+        state.headings = action.payload.headings;
+        return state;
+       },
+       setHtmlTables: (state, action) => {
+        state.tables = action.payload.tables;
+        return state;
+       },
+       setHtmBold: (state, action) => {
+        state.bold = action.payload.bold;
+        return state;
+       },
+       setHtmlBullets: (state, action) => {
+        state.bullets = action.payload.bullets;
+        return state;
+       },
     }
 });
 
-export const { setPassword, setUsername, setToken } = sliceLogin.actions;
+export const { setHtmBold, setHtmlBullets, setHtmlHeadings, setHtmlLinks, setHtmlTables } = sliceHTML.actions;
 
-export default sliceLogin.reducer;
+export default sliceHTML.reducer;

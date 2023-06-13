@@ -5,6 +5,7 @@ import contentReducer from './sliceContent';
 import alertReducer from './sliceAlert';
 import spinnerReducer from './sliceSpinner';
 import loginReducer from './sliceLogin';
+import htmlReducer from './sliceHTML';
 
 const store = configureStore({ 
     reducer: {
@@ -13,8 +14,8 @@ const store = configureStore({
         topic: topicReducer,
         content: contentReducer,
         spinner: spinnerReducer,
-        login: loginReducer
-
+        login: loginReducer,
+        html: htmlReducer
     }
 });
 
