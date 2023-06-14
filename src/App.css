@@ -37,6 +37,10 @@
   }
 }
 
+a {
+  color: blue !important;
+}
+
 p {
   margin: .5rem 0;
   line-height: 1.6rem;

@@ -14,6 +14,7 @@ import { AiOutlineLogout } from 'react-icons/ai';
 import Length from './components/Length';
 import HTML from './components/HTML';
 import Divider from './components/Divider';
+import FutureTense from './components/FutureTense';
 
 function App() {
   const alert = useSelector(state => state.alert);
@@ -45,10 +46,12 @@ function App() {
         </Alert>
         {mode === 'mix' && <Mix />}
         {mode === 'input' && login.token && <Box>     
+          <Topic />
           <Output/>
           <Length />
+          <FutureTense />
           <HTML />
-          <Topic />
+          
          
           <Content />    
           <QueryResults />

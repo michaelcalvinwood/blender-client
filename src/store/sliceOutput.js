@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const sliceOutput = createSlice({
     name: 'output',
-    initialState: {type: 'news', customType: '', length: 'long'},
+    initialState: {type: 'news', customType: '', length: 'long', futureTenseRemoval: 'day'},
     reducers: {
         setOutputType: (state, action) => {
             state.type = action.payload.type;
@@ -11,10 +11,14 @@ const sliceOutput = createSlice({
         setOutputLength: (state, action) => {
             state.length = action.payload.length;
             return state;
+        },
+        setFutureTenseRemoval: (state, action) => {
+            state.futureTenseRemoval = action.payload.futureTenseRemoval;
+            return state;
         }
     }
 });
 
-export const { setOutputType, setOutputLength } = sliceOutput.actions;
+export const { setOutputType, setOutputLength, setFutureTenseRemoval } = sliceOutput.actions;
 
 export default sliceOutput.reducer;
