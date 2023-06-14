@@ -17,7 +17,8 @@ const QueryResults = () => {
             id: urlInfo.id,
             url: urlInfo.link,
             title: urlInfo.title,
-            source: urlInfo.domain
+            source: urlInfo.domain,
+            date: urlInfo.date
         }
 
         dispatch(addContentMix({mix}));
