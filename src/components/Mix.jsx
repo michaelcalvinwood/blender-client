@@ -10,6 +10,7 @@ const Mix = () => {
     const topic = useSelector(state => state.topic);
     const output = useSelector(state => state.output);
     const login = useSelector(state => state.login);
+    const html = useSelector(state => state.html);
 
     console.log('mix', content.mix);
 
@@ -17,7 +18,7 @@ const Mix = () => {
 
     const handleMix = () => {
         dispatch(setContentStage({stage: 'input'}));
-        socket.emit('mix', {content: content.mix, topic, output, login});
+        socket.emit('mix', {content: content.mix, topic, output, login, html});
     }
 
     if (!content.mix.length) return <></>

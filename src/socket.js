@@ -79,6 +79,7 @@ export const setupTheSocket = (socketio, url, store) => {
 
     socket.on('rawArticle', (info) => {
         console.log('socket on rawArticle', info)
+        
         const options = {
             type: 'content/setContentArticle',
             payload: {
