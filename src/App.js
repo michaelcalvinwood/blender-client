@@ -15,6 +15,7 @@ import Length from './components/Length';
 import HTML from './components/HTML';
 import Divider from './components/Divider';
 import FutureTense from './components/FutureTense';
+import PymntsConnector from './components/PymntsConnector';
 
 function App() {
   const alert = useSelector(state => state.alert);
@@ -46,15 +47,19 @@ function App() {
         </Alert>
         {mode === 'mix' && <Mix />}
         {mode === 'input' && login.token && <Box>     
+       
           <Topic />
           <Output/>
           <Length />
+         
           <FutureTense />
           <HTML />
           
-         
+          <PymntsConnector />
           <Content />    
+          
           <QueryResults />
+          
         </Box>}
         { content.mix.length > 0 && <Box position='fixed' top="1rem" right="6rem" zIndex="10" backgroundColor={'#0078FF'} color='white' padding=".25rem" width="4rem" height="4rem" borderRadius="50%" display='flex' justifyContent={'center'} alignItems={'center'} fontSize={'1.5rem'} cursor={'pointer'} onClick={() => mode === 'input' ? setMode('mix') : setMode('input')}>{content.mix.length}</Box>
         }

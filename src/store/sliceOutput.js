@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const sliceOutput = createSlice({
     name: 'output',
-    initialState: {type: 'news', customType: '', length: 'long', futureTenseRemoval: 'week'},
+    initialState: {type: 'news', customType: '', length: 'long', futureTenseRemoval: 'week', pymntsConnector: true},
     reducers: {
         setOutputType: (state, action) => {
             state.type = action.payload.type;
@@ -15,10 +15,15 @@ const sliceOutput = createSlice({
         setFutureTenseRemoval: (state, action) => {
             state.futureTenseRemoval = action.payload.futureTenseRemoval;
             return state;
+        },
+        togglePymntsConnector: (state, action) => {
+            let value = !state.pymntsConnector;
+            state.pymntsConnector = value;
+            return state; 
         }
     }
 });
 
-export const { setOutputType, setOutputLength, setFutureTenseRemoval } = sliceOutput.actions;
+export const { setOutputType, setOutputLength, setFutureTenseRemoval, togglePymntsConnector } = sliceOutput.actions;
 
 export default sliceOutput.reducer;
