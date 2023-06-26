@@ -2,10 +2,12 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { setSelectedTitle } from '../store/sliceWordpress';
 import { Box, Heading, Select, Button } from '@chakra-ui/react';
+import * as socket from '../socket';
 
-const Wordpress = ({stage}) => {
+const Wordpress = ({stage, article}) => {
   const wordpress = useSelector(state => state.wordpress);
-  const { titles, selectedTitle } = wordpress;
+  const login = useSelector(state => state.login);
+  const { titles, selectedTitle, tags } = wordpress;
 
   console.log(titles.length, wordpress);
 
@@ -14,7 +16,7 @@ const Wordpress = ({stage}) => {
   let current = titles.length ? titles[selectedTitle] : '';
 
   const upload = () => {
-
+    socket.emit('upload', {article, title: titles[selectedTitle], titles, tags, login});
   }
 
   return (
