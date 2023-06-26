@@ -7,6 +7,7 @@ import spinnerReducer from './sliceSpinner';
 import loginReducer from './sliceLogin';
 import htmlReducer from './sliceHTML';
 import wordpressReducer from './sliceWordpress';
+import progressReducer from './sliceProgress';
 
 const store = configureStore({ 
     reducer: {
@@ -17,7 +18,8 @@ const store = configureStore({
         spinner: spinnerReducer,
         login: loginReducer,
         html: htmlReducer,
-        wordpress: wordpressReducer
+        wordpress: wordpressReducer,
+        progress: progressReducer
     }
 });
 

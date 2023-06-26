@@ -3,6 +3,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {FaRegTrashAlt} from 'react-icons/fa';
 import { removeContentMix, setContentStage } from '../store/sliceContent';
+import { setTitlesAndTags } from '../store/sliceWordpress';
 import * as socket from '../socket';
 import Wordpress from './Wordpress';
 
@@ -22,7 +23,7 @@ const Mix = () => {
         window.open('https://blender.pymnts.com', '_blank');    
         dispatch(setContentStage({stage: 'input'}));
         socket.emit('mix', {content: content.mix, topic, output, login, html});
-        
+        dispatch(setTitlesAndTags({titles: [], tags: []}))
     }
 
     if (!content.mix.length) return <></>

@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { setSelectedTitle } from '../store/sliceWordpress';
+import { setContentStage } from '../store/sliceContent';
 import { Box, Heading, Select, Button } from '@chakra-ui/react';
 import * as socket from '../socket';
 
@@ -17,6 +18,7 @@ const Wordpress = ({stage, article}) => {
 
   const upload = () => {
     socket.emit('upload', {article, title: titles[selectedTitle], titles, tags, login});
+    dispatch(setContentStage({stage: 'input'}));
   }
 
   return (
