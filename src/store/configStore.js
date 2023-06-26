@@ -6,6 +6,7 @@ import alertReducer from './sliceAlert';
 import spinnerReducer from './sliceSpinner';
 import loginReducer from './sliceLogin';
 import htmlReducer from './sliceHTML';
+import wordpressReducer from './sliceWordpress';
 
 const store = configureStore({ 
     reducer: {
@@ -15,7 +16,8 @@ const store = configureStore({
         content: contentReducer,
         spinner: spinnerReducer,
         login: loginReducer,
-        html: htmlReducer
+        html: htmlReducer,
+        wordpress: wordpressReducer
     }
 });
 
