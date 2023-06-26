@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {FaRegTrashAlt} from 'react-icons/fa';
 import { removeContentMix, setContentStage } from '../store/sliceContent';
 import * as socket from '../socket';
+import Wordpress from './Wordpress';
 
 const Mix = () => {
     const content = useSelector(state => state.content);
@@ -11,13 +12,14 @@ const Mix = () => {
     const output = useSelector(state => state.output);
     const login = useSelector(state => state.login);
     const html = useSelector(state => state.html);
+    const wordpress = useSelector(state => state.wordpress);
 
     console.log('mix', content.mix);
 
     const dispatch = useDispatch();
 
     const handleMix = () => {
-        window.open('https://blender.pymnts.com', '_blank');
+        window.open('https://blender.pymnts.com', '_blank');    
         dispatch(setContentStage({stage: 'input'}));
         socket.emit('mix', {content: content.mix, topic, output, login, html});
         
@@ -44,11 +46,11 @@ const Mix = () => {
                 }        
             </Box>
         ))
-
         }
          <Box display={'flex'} justifyContent={'center'} margin=".5rem 0">
             <Button variant={'primary'} textAlign={'right'} width='5rem' onClick={handleMix}>Mix</Button>
         </Box>
+        { wordpress.titles.length !== 0 && <Wordpress />}
         {content.stage !== 'input' && <Heading borderTop='2px solid #0078FF' paddingTop="1rem" margin="1rem 0" size="sm">{`${content.stage.charAt(0).toUpperCase() + content.stage.slice(1)}`}</Heading>}
         {content.stage === 'text' && <Box>
             {content.mix.map(mix => {

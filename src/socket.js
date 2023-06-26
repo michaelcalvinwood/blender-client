@@ -19,6 +19,18 @@ export const setupTheSocket = (socketio, url, store) => {
     socket = socketio(url);
     console.log('dispatch')
 
+    socket.on('tagsAndTitles', tat => {
+        console.log('TAGSANDTITLES', tat);
+
+        store.dispatch({
+            type: 'wordpress/setTitlesAndTags',
+            payload: {
+                tags: tat.tags,
+                titles: tat.titles
+            }
+        })
+    })
+
     socket.on('msg', ({status, msg}) => {
         store.dispatch({
             type: 'alert/setAlertMsg',
