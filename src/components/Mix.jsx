@@ -17,6 +17,8 @@ const Mix = () => {
     const wordpress = useSelector(state => state.wordpress);
     const progress = useSelector(state => state.progress);
 
+    console.log('Mix progress', progress);
+
     console.log('mix', content.mix);
 
     const dispatch = useDispatch();
@@ -26,7 +28,7 @@ const Mix = () => {
         dispatch(setContentStage({stage: 'input'}));
         socket.emit('mix', {content: content.mix, topic, output, login, html});
         dispatch(setTitlesAndTags({titles: [], tags: []}))
-        dispatch(setProgress({current: 1, max: 10}));
+        dispatch(setProgress({current: 0, max: 10}));
     }
 
     if (!content.mix.length) return <></>
@@ -54,7 +56,7 @@ const Mix = () => {
          <Box display={'flex'} justifyContent={'center'} margin=".5rem 0">
             <Button variant={'primary'} textAlign={'right'} width='5rem' onClick={handleMix}>Mix</Button>
         </Box>
-        <Progress value={progress.max !== 0 ? (progress.current / progress.max) * 100 : 0} size='md'/>
+        <Progress value={progress.max !== 0 ? (progress.current / progress.max) * 100 : 0} size='md' margin=".75rem 0"/>
         { wordpress.titles.length !== 0 && <Wordpress stage={content.stage} article={content.article}/>}
         {content.stage !== 'input' && content.stage !== 'rawArticle' && <Heading borderTop='2px solid #0078FF' paddingTop="1rem" margin="1rem 0" size="sm">{`${content.stage.charAt(0).toUpperCase() + content.stage.slice(1)}`}</Heading>}
         {content.stage === 'text' && <Box>

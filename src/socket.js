@@ -31,6 +31,15 @@ export const setupTheSocket = (socketio, url, store) => {
         })
     })
 
+    socket.on('progress', (progress) => {
+        const {current, max } = progress;
+        console.log('PROGRESS', current, max);
+        store.dispatch({
+            type: 'progress/setProgress',
+            payload: {current, max}
+        });
+    })
+
     socket.on('msg', ({status, msg}) => {
         store.dispatch({
             type: 'alert/setAlertMsg',
