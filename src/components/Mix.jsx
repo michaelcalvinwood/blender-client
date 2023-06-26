@@ -50,8 +50,8 @@ const Mix = () => {
          <Box display={'flex'} justifyContent={'center'} margin=".5rem 0">
             <Button variant={'primary'} textAlign={'right'} width='5rem' onClick={handleMix}>Mix</Button>
         </Box>
-        { wordpress.titles.length !== 0 && <Wordpress />}
-        {content.stage !== 'input' && <Heading borderTop='2px solid #0078FF' paddingTop="1rem" margin="1rem 0" size="sm">{`${content.stage.charAt(0).toUpperCase() + content.stage.slice(1)}`}</Heading>}
+        { wordpress.titles.length !== 0 && <Wordpress stage={content.stage}/>}
+        {content.stage !== 'input' && content.stage !== 'rawArticle' && <Heading borderTop='2px solid #0078FF' paddingTop="1rem" margin="1rem 0" size="sm">{`${content.stage.charAt(0).toUpperCase() + content.stage.slice(1)}`}</Heading>}
         {content.stage === 'text' && <Box>
             {content.mix.map(mix => {
                 return <Box key={`${content.stage}-${mix.id}`} marginTop="1rem">
