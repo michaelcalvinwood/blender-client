@@ -17,8 +17,10 @@ const Mix = () => {
     const dispatch = useDispatch();
 
     const handleMix = () => {
+        window.open('https://blender.pymnts.com', '_blank');
         dispatch(setContentStage({stage: 'input'}));
         socket.emit('mix', {content: content.mix, topic, output, login, html});
+        
     }
 
     if (!content.mix.length) return <></>
