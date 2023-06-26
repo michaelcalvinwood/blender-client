@@ -9,7 +9,7 @@ const FutureTense = () => {
     const output = useSelector (state => state.output);
     const login = useSelector(state => state.login);
     const dispatch = useDispatch();
-    console.log('output', output);
+
 
     const types = [
         {type: 'Hour', id:'hour'},
