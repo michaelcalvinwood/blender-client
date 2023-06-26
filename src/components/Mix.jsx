@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Link, Text } from '@chakra-ui/react'
+import { Box, Button, Heading, Link, Progress, Text } from '@chakra-ui/react'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {FaRegTrashAlt} from 'react-icons/fa';
@@ -6,6 +6,7 @@ import { removeContentMix, setContentStage } from '../store/sliceContent';
 import { setTitlesAndTags } from '../store/sliceWordpress';
 import * as socket from '../socket';
 import Wordpress from './Wordpress';
+import { setProgress } from '../store/sliceProgress';
 
 const Mix = () => {
     const content = useSelector(state => state.content);
@@ -14,6 +15,7 @@ const Mix = () => {
     const login = useSelector(state => state.login);
     const html = useSelector(state => state.html);
     const wordpress = useSelector(state => state.wordpress);
+    const progress = useSelector(state => state.progress);
 
     console.log('mix', content.mix);
 
@@ -24,6 +26,7 @@ const Mix = () => {
         dispatch(setContentStage({stage: 'input'}));
         socket.emit('mix', {content: content.mix, topic, output, login, html});
         dispatch(setTitlesAndTags({titles: [], tags: []}))
+        dispatch(setProgress({current: 1, max: 10}));
     }
 
     if (!content.mix.length) return <></>
@@ -51,6 +54,7 @@ const Mix = () => {
          <Box display={'flex'} justifyContent={'center'} margin=".5rem 0">
             <Button variant={'primary'} textAlign={'right'} width='5rem' onClick={handleMix}>Mix</Button>
         </Box>
+        <Progress value={progress.max !== 0 ? (progress.current / progress.max) * 100 : 0} size='md'/>
         { wordpress.titles.length !== 0 && <Wordpress stage={content.stage} article={content.article}/>}
         {content.stage !== 'input' && content.stage !== 'rawArticle' && <Heading borderTop='2px solid #0078FF' paddingTop="1rem" margin="1rem 0" size="sm">{`${content.stage.charAt(0).toUpperCase() + content.stage.slice(1)}`}</Heading>}
         {content.stage === 'text' && <Box>
