@@ -11,10 +11,10 @@ const Length = () => {
     const dispatch = useDispatch();
 
     const types = [
-        {type: 'Exhaustive', id:'exhaustive'},
+        //{type: 'Exhaustive', id:'exhaustive'},
         {type: 'Longform', id: 'long'},
-        {type: 'Shortform', id: 'short'},
-        {type: 'Condensed', id: 'condensed'},
+        //{type: 'Shortform', id: 'short'},
+        //{type: 'Condensed', id: 'condensed'},
 
     ]
     const defaultType = types[0];

@@ -49,13 +49,13 @@ function App() {
         {mode === 'input' && login.token && <Box>     
        
           <Topic />
-          <Output/>
-          <Length />
+          {/* <Output/> */}
+          {/* <Length /> */}
          
-          <FutureTense />
-          <HTML />
+          {/* <FutureTense /> */}
+          {/* <HTML /> */}
           
-          <PymntsConnector />
+          {/* <PymntsConnector /> */}
           <Content />    
           
           <QueryResults />

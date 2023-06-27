@@ -56,7 +56,7 @@ const Login = () => {
 
   return (
     <Container>
-        <Heading textAlign='center'>PYMNTS InstaNews</Heading>
+        <Heading textAlign='center'>PYMNTS Blender</Heading>
         <Alert status={alert.status} marginBottom={'0'} visibility={alert.status && alert.msg ? 'visible' : 'hidden'}>
         <AlertIcon />
         {alert.msg}

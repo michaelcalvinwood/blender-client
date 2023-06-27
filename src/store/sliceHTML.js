@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const sliceHTML = createSlice({
     name: 'html',
-    initialState: {links: false, headings: true, tables: true, bold: true, bullets: true},
+    initialState: {links: false, headings: false, tables: false, bold: false, bullets: false},
     reducers: {
        setHtmlLinks: (state, action) => {
         state.links = action.payload.links;

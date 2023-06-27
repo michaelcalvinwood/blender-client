@@ -11,11 +11,10 @@ const Output = () => {
     const dispatch = useDispatch();
     
     const types = [
-        {type: 'News Article', id:'news'},
-        {type: 'Blog Post', id: 'blog'},
-        {type: 'Summary', id: 'summary'},
-        {type: 'Outline', id: 'outline'},
-        {type: 'Marketing Collateral', id: 'marketing'}
+        {type: 'PYMNTS Article', id:'news'},
+        {type: 'CPI Post', id: 'cpi_post'},
+        {type: 'Tracker Post', id: 'tracker_post'},
+        
     ]
     const defaultType = types[0];
 
