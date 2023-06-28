@@ -26,9 +26,9 @@ const Content = () => {
         {type: 'Link', id: "URL", input:<Link />},
         //{type: 'File', id: 'file', input:<File />},
         //{type: 'Whisper', id: 'whisper', input:<Whisper />},
-        {type: 'Text', id: 'text', input:<TextInput />},
-        {type: 'AI Filler', id: 'chatGPT', input: <ChatGPT />},
-        {type: 'AI Continue', id: 'AIContinue', input: <AIContinue />},
+        // {type: 'Text', id: 'text', input:<TextInput />},
+        // {type: 'AI Filler', id: 'chatGPT', input: <ChatGPT />},
+        // {type: 'AI Continue', id: 'AIContinue', input: <AIContinue />},
         //{type: 'Seed', id: 'seed', input:<></>},
         //{type: 'Website', id: 'website', input:<></>}
     ]

@@ -7,6 +7,7 @@ import { setTitlesAndTags } from '../store/sliceWordpress';
 import * as socket from '../socket';
 import Wordpress from './Wordpress';
 import { setProgress } from '../store/sliceProgress';
+import { setAlertMsg } from '../store/sliceAlert';
 
 const Mix = () => {
     const content = useSelector(state => state.content);
@@ -24,6 +25,7 @@ const Mix = () => {
     const dispatch = useDispatch();
 
     const handleMix = () => {
+        if (!topic) return dispatch(setAlertMsg({status: 'error', msg: 'Please enter a topic.'}));
         window.open('https://blender.pymnts.com', '_blank');    
         dispatch(setContentStage({stage: 'input'}));
         socket.emit('mix', {content: content.mix, topic, output, login, html});

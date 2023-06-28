@@ -8,6 +8,11 @@ import * as socket from '../socket';
 const Wordpress = ({stage, article}) => {
   const wordpress = useSelector(state => state.wordpress);
   const login = useSelector(state => state.login);
+  const content = useSelector(state => state.content);
+  const topic = useSelector(state => state.topic);
+  const output = useSelector(state => state.output);
+  const html = useSelector(state => state.html);
+  
   const { titles, selectedTitle, tags } = wordpress;
 
   console.log(titles.length, wordpress);
@@ -17,7 +22,7 @@ const Wordpress = ({stage, article}) => {
   let current = titles.length ? titles[selectedTitle] : '';
 
   const upload = () => {
-    socket.emit('upload', {article, title: titles[selectedTitle], titles, tags, login});
+    socket.emit('upload', {article, title: titles[selectedTitle], titles, tags, login, content: content.mix, topic, output, html});
     dispatch(setContentStage({stage: 'input'}));
   }
 
