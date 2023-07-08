@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const sliceOutput = createSlice({
     name: 'output',
-    initialState: {type: 'news', customType: '', length: 'long', futureTenseRemoval: 'week', pymntsConnector: true},
+    initialState: {type: 'news', customType: '', length: 'long', futureTenseRemoval: 'week', pymntsConnector: false},
     reducers: {
         setOutputType: (state, action) => {
             state.type = action.payload.type;

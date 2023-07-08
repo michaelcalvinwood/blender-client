@@ -55,7 +55,7 @@ function App() {
           {/* <FutureTense /> */}
           {/* <HTML /> */}
           
-          {/* <PymntsConnector /> */}
+          <PymntsConnector />
           <Content />    
           
           <QueryResults />
