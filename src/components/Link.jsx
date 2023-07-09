@@ -35,7 +35,7 @@ const Link = () => {
 
         if (extension) {
             console.log('filename extension', filename, extension);
-            type += `_${extension}`;
+            //type += `_${extension}`;
             title = filename;    
         } else {
             let request, response;
