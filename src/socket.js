@@ -121,7 +121,12 @@ export const setupTheSocket = (socketio, url, store) => {
     })
 
     socket.on('seeds', seeds => {
-        console.log('seeds', seeds);
+        store.dispatch({
+            type: 'seeds/setSeeds',
+            payload: {
+                seeds
+            }
+        })
     })
    
 }
