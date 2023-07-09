@@ -13,12 +13,13 @@ import ChatGPT from './ChatGPT';
 import Whisper from './Whisper';
 import Tracker from './Tracker';
 import AIContinue from './AIContinue';
+import Seeds from './Seeds';
 
 const Content = () => {
     
     const dispatch = useDispatch();
     const content = useSelector(state => state.content);
-
+   
     const types = [
         {type: 'Google Search', id: "google_search", input: <GoogleSearch />},
         {type: 'PYMNTS Search', id: 'pymnts_search', input: <PymntsSearch />},
@@ -29,7 +30,7 @@ const Content = () => {
         // {type: 'Text', id: 'text', input:<TextInput />},
         // {type: 'AI Filler', id: 'chatGPT', input: <ChatGPT />},
         // {type: 'AI Continue', id: 'AIContinue', input: <AIContinue />},
-        //{type: 'Seed', id: 'seed', input:<></>},
+        {type: 'Seed', id: 'seed', input:<Seeds />},
         //{type: 'Website', id: 'website', input:<></>}
     ]
     
