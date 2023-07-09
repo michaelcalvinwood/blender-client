@@ -8,6 +8,7 @@ import loginReducer from './sliceLogin';
 import htmlReducer from './sliceHTML';
 import wordpressReducer from './sliceWordpress';
 import progressReducer from './sliceProgress';
+import seedsReducer from './sliceSeeds';
 
 const store = configureStore({ 
     reducer: {
@@ -19,7 +20,8 @@ const store = configureStore({
         login: loginReducer,
         html: htmlReducer,
         wordpress: wordpressReducer,
-        progress: progressReducer
+        progress: progressReducer,
+        seeds: seedsReducer
     }
 });
 
