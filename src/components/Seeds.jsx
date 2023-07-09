@@ -18,56 +18,15 @@ const Seeds = () => {
     console.log(seeds);
 
     const dispatch = useDispatch();
-    const addToMix = async (id) => {
-        console.log("add to mix", id);
-        return;
-        const link = content.input;
-        console.log('link', link, content);
-        console.log (urlMetadata);
-
-        let url;
-
-        try {
-            url = new URL(link);
-        } catch (err) {
-            console.error('Link error', err);
-            return dispatch(setAlertMsg({status: 'error', msg: "Please enter a valid URL."}));
-        }
-
-        let type = 'url';
-        let title;
-        let filename = link.substring(link.lastIndexOf('/') + 1);
-        let extension = filename.substring(filename.lastIndexOf('.')+1).toLowerCase();
-
-        if (extension) {
-            console.log('filename extension', filename, extension);
-            //type += `_${extension}`;
-            title = filename;    
-        } else {
-            let request, response;
-
-            request = {
-                url: 'https://query.pymnts.com:6255/meta',
-                method: 'post',
-                data: {
-                    url: link
-                }
-            }
-            try {
-                response = await axios(request);
-                title = response.data;
-            } catch (err) {
-                console.error(err);
-                title = url.pathname;
-            }
-        } 
-        
+    const addToMix = async (seed) => {
+        console.log("add to mix", seed);
+        const urlInfo = new URL(seed.url);
         const mix = {
-            type,
+            type: 'url',
             id: uuidv4(),
-            url: link,
-            title,
-            source: url.hostname
+            url: seed.link,
+            title: seed.title,
+            source: urlInfo.hostname
         }
 
         console.log('mix', mix);
@@ -80,11 +39,13 @@ const Seeds = () => {
         {seeds.map(seed => {
             const urlInfo = new URL(seed.url);
             console.log(urlInfo);
+            const test = content.mix.find(entry => entry.url === seed.link);
+            if (test) return;
             return (
-                <Box display="flex" justifyContent={'space-between'} alignItems='center' width="100%" fontSize="1.25rem" margin=".5rem 0" borderBottom="1px solid black">
-                    <Link href={seed.link} target="_blank"><Text>{seed.title}</Text></Link>
+                <Box key={`seed-${seed.id}`}display="flex" justifyContent={'space-between'} alignItems='center' width="100%" fontSize="1.25rem" margin=".5rem 0" borderBottom="1px solid black">
+                    <Link href={seed.link} target="_blank"><Text width='40rem'>{seed.title}</Text></Link>
                     <Text>{urlInfo.hostname}</Text>
-                    <FaRegSquare onClick={() => addToMix(seed.id)} cursor={'pointer'}/>
+                    <FaRegSquare onClick={() => addToMix(seed)} cursor={'pointer'}/>
                 </Box>
             )
         })}
