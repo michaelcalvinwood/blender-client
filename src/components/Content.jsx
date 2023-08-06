@@ -25,7 +25,7 @@ const Content = () => {
         {type: 'PYMNTS Search', id: 'pymnts_search', input: <PymntsSearch />},
         //{type: 'PYMNTS Study/Tracker', id: 'tracker', input:<Tracker />},
         {type: 'Link', id: "URL", input:<Link />},
-        //{type: 'File', id: 'file', input:<File />},
+        {type: 'File', id: 'file', input:<File />},
         //{type: 'Whisper', id: 'whisper', input:<Whisper />},
         // {type: 'Text', id: 'text', input:<TextInput />},
         // {type: 'AI Filler', id: 'chatGPT', input: <ChatGPT />},
